@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+	<head>
+		<link th:href="@{/webjars/bootstrap/4.3.1/dist/css/bootstrap.min.css}" rel="stylesheet"/>
+		<script th:src="@{/webjars/bootstrap/4.3.1/dist/js/bootstrap.js}"></script>
+		<script th:src="@{/webjars/jquery/3.4.1/dist/jquery.js}"></script>
+		<script th:src="@{/webjars/popper.js/1.15.0/dist/umd/popper.min.js}"></script>
+		<meta charset="UTF-8">
+		<title>GBF Rando</title>
+	</head>
+	<body>
+		<div>
+			<form th:action="@{/addChara}" th:object="${chara}" method="post" enctype="multipart/form-data">
+			<input type="file" name="getPic" accept="image/png, image/jpeg"/>
+			<input type="text" th:field="*{name}" placeholder="Character name" required/>
+			<select th:field="*{element}">
+				<option value="Light">Light</option>
+				<option value="Fire">Fire</option>
+				<option value="Water">Water</option>
+				<option value="Earth">Earth</option>
+				<option value="Wind">Wind</option>
+				<option value="Dark">Dark</option>
+				<option value="All">All</option>
+			</select>
+			<select th:field="*{rarity}">
+				<option value="SSR">SSR</option>
+				<option value="SR">SR</option>
+				<option value="R">R</option>
+			</select>
+			<input type="text" th:field="*{version}" placeholder="Limited? Summer? Xmas?"/>
+			<button type="submit">Valider</button>
+			</form>
+		</div>
+		<div class="mt-3">
+			<span class="alert alert-warning"><a th:href="@{/rando/fire}">Fire</a></span>
+			<span class="alert alert-warning"><a th:href="@{/rando/water}">Water</a></span>
+			<span class="alert alert-warning"><a th:href="@{/rando/earth}">Earth</a></span>
+			<span class="alert alert-warning"><a th:href="@{/rando/wind}">Wind</a></span>
+			<span class="alert alert-warning"><a th:href="@{/rando/light}">Light</a></span>
+			<span class="alert alert-warning"><a th:href="@{/rando/dark}">Dark</a></span>
+		</div>
+	</body>
+</html>
