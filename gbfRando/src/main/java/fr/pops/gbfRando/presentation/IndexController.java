@@ -15,17 +15,39 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import fr.pops.gbfRando.business.entity.Chara;
+import fr.pops.gbfRando.business.entity.User;
 import fr.pops.gbfRando.business.service.CharacterService;
+import fr.pops.gbfRando.business.service.UserService;
 
 @Controller
 public class IndexController {
 
 	@Autowired
 	CharacterService charaServ;
+	
+	@Autowired
+	UserService userServ;
 
 	@GetMapping("/")
-	public String index(Chara chara) {
+	public String index() {
 		return "index.html";
+	}
+	
+	@GetMapping("/login")
+	public String login(User user) {
+		return "login.html";
+	}
+	
+	@PostMapping("/login")
+	public String testLogin(User user) {
+		if(this.userServ.validate(user))
+			{return "index.html";}
+		return "index.html";
+	}
+
+	@GetMapping("/charaForm")
+	public String charaForm(Chara chara) {
+		return "newchara.html";
 	}
 
 	@PostMapping("/addChara")
